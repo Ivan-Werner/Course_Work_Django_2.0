@@ -14,7 +14,7 @@ from client.models import Client
 
 class ClientListView(LoginRequiredMixin, ListView):
     model = Client
-    template_name = "client/client_list.html"
+    template_name = "communication/client_list.html"
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -32,7 +32,7 @@ class ClientDetailView(LoginRequiredMixin, DetailView):
 class ClientCreateView(LoginRequiredMixin, CreateView):
     model = Client
     form_class = ClientForm
-    success_url = reverse_lazy("client:client_list")
+    success_url = reverse_lazy("communication:client_list")
 
     def form_valid(self, form):
         client = form.save()
@@ -52,9 +52,9 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
 class ClientUpdateView(LoginRequiredMixin, UpdateView):
     model = Client
     form_class = ClientForm
-    success_url = reverse_lazy("client:client_list")
+    success_url = reverse_lazy("communication:client_list")
 
 
 class ClientDeleteView(DeleteView):
     model = Client
-    success_url = reverse_lazy("client:client_list")
+    success_url = reverse_lazy("communication:client_list")
