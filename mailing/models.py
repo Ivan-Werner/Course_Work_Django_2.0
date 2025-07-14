@@ -6,7 +6,7 @@ from users.models import User
 
 
 class Mailing(models.Model):
-    status_choise = [
+    status_choice = [
         ("Создана", "Создана"),
         ("Запущена", "Запущена"),
         ("Завершена", "Завершена"),
@@ -18,7 +18,7 @@ class Mailing(models.Model):
         null=True, blank=True, verbose_name="Окончание рассылки"
     )
     status = models.CharField(
-        max_length=20, choices=status_choise, default="Создана", verbose_name="Статус"
+        max_length=20, choices=status_choice, default="Создана", verbose_name="Статус"
     )
     communication = models.ForeignKey(
         Communication, on_delete=models.CASCADE, verbose_name="Сообщение"
@@ -44,7 +44,7 @@ class Mailing(models.Model):
         blank=True,
     )
 
-    class Metta:
+    class Meta:
         verbose_name = "Рассылка"
         verbose_name_plural = "Рассылки"
 
@@ -53,7 +53,7 @@ class Mailing(models.Model):
 
 
 class MailingAttempt(models.Model):
-    status_choise = [
+    status_choice = [
         ("Успешно", "Успешно"),
         ("Не успешно", "Не успешно"),
     ]
@@ -62,7 +62,7 @@ class MailingAttempt(models.Model):
         auto_now_add=True, verbose_name="Дата и время попытки"
     )
     status = models.CharField(
-        max_length=20, choices=status_choise, verbose_name="Статус "
+        max_length=20, choices=status_choice, verbose_name="Статус "
     )
     server_response = models.TextField(verbose_name="Ответ почтового сервера")
     mailing = models.ForeignKey(

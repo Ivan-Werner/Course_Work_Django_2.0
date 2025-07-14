@@ -65,13 +65,14 @@ class CustomPasswordResetView(PasswordResetView):
 
         # Create custom connection
         from django.core.mail import get_connection, EmailMessage
+
         connection = get_connection(
             host=settings.EMAIL_HOST,
             port=settings.EMAIL_PORT,
             username=settings.EMAIL_HOST_USER,
             password=settings.EMAIL_HOST_PASSWORD,
             use_tls=False,
-            use_ssl=True
+            use_ssl=True,
         )
 
         for user in active_users:
@@ -85,7 +86,7 @@ class CustomPasswordResetView(PasswordResetView):
                     f"Hello! To reset your password, please click the link: {reset_url}",
                     settings.EMAIL_HOST_USER,
                     [user.email],
-                    connection=connection
+                    connection=connection,
                 )
                 email.send()
 
