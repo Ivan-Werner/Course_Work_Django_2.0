@@ -5,8 +5,13 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-                                  UpdateView)
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
 from client.forms import ClientForm
 from client.models import Client
@@ -38,15 +43,6 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
         client = form.save()
         client.owner = self.request.user
         return super().form_valid(form)
-
-    # @login_required
-    # def create_client(request):
-    #     if request.method == "POST":
-    #         name = request.POST["name"]
-    #         email = request.POST["email"]
-    #         Client.objects.create(name=name, email=email, created_by=request.user)
-    #         return redirect("client_list")
-    #     return render(request, "create_client.html")
 
 
 class ClientUpdateView(LoginRequiredMixin, UpdateView):

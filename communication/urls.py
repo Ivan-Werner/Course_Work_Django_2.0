@@ -1,11 +1,13 @@
 from django.urls import path
 
 from communication.apps import CommunicationConfig
-from communication.views import (CommunicationCreateView,
-                                 CommunicationDeleteView,
-                                 CommunicationDetailView,
-                                 CommunicationListView,
-                                 CommunicationUpdateView)
+from communication.views import (
+    CommunicationCreateView,
+    CommunicationDeleteView,
+    CommunicationDetailView,
+    CommunicationListView,
+    CommunicationUpdateView,
+)
 
 app_name = CommunicationConfig.name
 

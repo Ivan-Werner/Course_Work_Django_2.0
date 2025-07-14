@@ -9,39 +9,116 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('client', '0001_initial'),
-        ('communication', '0001_initial'),
+        ("client", "0001_initial"),
+        ("communication", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='MailingAttempt',
+            name="MailingAttempt",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('timestamp', models.DateTimeField(auto_now_add=True, verbose_name='Дата и время попытки')),
-                ('status', models.CharField(choices=[('Успешно', 'Успешно'), ('Не успешно', 'Не успешно')], max_length=20, verbose_name='Статус ')),
-                ('server_response', models.TextField(verbose_name='Ответ почтового сервера')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "timestamp",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Дата и время попытки"
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("Успешно", "Успешно"), ("Не успешно", "Не успешно")],
+                        max_length=20,
+                        verbose_name="Статус ",
+                    ),
+                ),
+                (
+                    "server_response",
+                    models.TextField(verbose_name="Ответ почтового сервера"),
+                ),
             ],
             options={
-                'verbose_name': 'Попытка рассылки',
-                'verbose_name_plural': 'Попытки рассылки',
+                "verbose_name": "Попытка рассылки",
+                "verbose_name_plural": "Попытки рассылки",
             },
         ),
         migrations.CreateModel(
-            name='Mailing',
+            name="Mailing",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_send_time', models.DateTimeField(blank=True, null=True, verbose_name='Начало рассылки')),
-                ('end_time', models.DateTimeField(blank=True, null=True, verbose_name='Окончание рассылки')),
-                ('status', models.CharField(choices=[('Создана', 'Создана'), ('Запущена', 'Запущена'), ('Завершена', 'Завершена')], default='Создана', max_length=20, verbose_name='Статус')),
-                ('created_at', models.DateTimeField(auto_now_add=True, help_text='Дата создания продукта', verbose_name='Дата создания')),
-                ('updated_at', models.DateTimeField(auto_now=True, help_text='Дата последнего изменения продукта', verbose_name='Дата последнего изменения')),
-                ('client', models.ManyToManyField(to='client.client', verbose_name='Клиенты')),
-                ('communication', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='communication.communication', verbose_name='Сообщение')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "first_send_time",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="Начало рассылки"
+                    ),
+                ),
+                (
+                    "end_time",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="Окончание рассылки"
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("Создана", "Создана"),
+                            ("Запущена", "Запущена"),
+                            ("Завершена", "Завершена"),
+                        ],
+                        default="Создана",
+                        max_length=20,
+                        verbose_name="Статус",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True,
+                        help_text="Дата создания продукта",
+                        verbose_name="Дата создания",
+                    ),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(
+                        auto_now=True,
+                        help_text="Дата последнего изменения продукта",
+                        verbose_name="Дата последнего изменения",
+                    ),
+                ),
+                (
+                    "client",
+                    models.ManyToManyField(to="client.client", verbose_name="Клиенты"),
+                ),
+                (
+                    "communication",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="communication.communication",
+                        verbose_name="Сообщение",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Рассылка',
-                'verbose_name_plural': 'Рассылки',
+                "verbose_name": "Рассылка",
+                "verbose_name_plural": "Рассылки",
             },
         ),
     ]
